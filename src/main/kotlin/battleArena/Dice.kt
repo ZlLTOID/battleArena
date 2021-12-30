@@ -1,6 +1,6 @@
 package battleArena
 
-class Cube(numberOfSides: Int) {
+class Dice(numberOfSides: Int) {
     val numberOfSides: Int
 
     init {
