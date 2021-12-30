@@ -2,14 +2,14 @@ package battleArena
 
 import java.lang.StringBuilder
 
-class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) {
-    private val name: String
+open class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) {
+    protected val name: String
     private var hp: Int
-    private var currentHp: Int = hp
-    private var attack: Int
-    private var defend: Int
-    private var dice: Dice
-    private var message: String = ""
+    protected var currentHp: Int = hp
+    protected var attack: Int
+    protected var defend: Int
+    protected var dice: Dice
+    protected var battleMessage: String = ""
 
     init {
         this.name = name
@@ -21,7 +21,7 @@ class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) {
 
     fun isAlive(): Boolean {
         if (currentHp == 0) {
-            message = "Warrior $name has died."
+            battleMessage = "Warrior $name has died."
         }
 
         return currentHp > 0
@@ -46,41 +46,42 @@ class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) {
         return healthBar
     }
 
-    fun defend(incomingAttack: Int) {
+    open fun defend(incomingAttack: Int) {
         val damage = incomingAttack - (defend + dice.roll())
 
         if (damage > 0) {
-            currentHp -= incomingAttack
+            currentHp -= damage
 
-            message = "$name has lost $damage hp!"
+            battleMessage = "$name has lost $damage hp!"
             if (currentHp < 1) {
-                message += " And died..."
+                battleMessage += " And died..."
             }
 
             if (currentHp <= 0) {
                 currentHp = 0
             }
         } else {
-            message = "$name defended himself!"
+            battleMessage = "$name defended himself!"
         }
     }
 
-    fun attack(enemy: Warrior) {
+    open fun attack(enemy: Warrior) {
         val attack: Int = attack + dice.roll()
 
         enemy.defend(attack)
 
-        message = "$name attacks $enemy with $attack damage!"
+        battleMessage = "$name attacks $enemy with $attack damage!"
         if (enemy.currentHp < 1) {
-            message += " And killed Him!"
+            battleMessage += " And killed Him!"
         }
     }
 
     fun getMessage(): String
     {
-        return message
+        return battleMessage
     }
 
+    @JvmName("getCurrentHp1")
     fun getCurrentHp(): Int
     {
         return currentHp

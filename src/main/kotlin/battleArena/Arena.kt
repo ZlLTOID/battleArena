@@ -20,7 +20,7 @@ class Arena(warrior1: Warrior, warrior2: Warrior, dice: Dice) {
 
     fun printMessage(message: String) {
         println(message)
-        Thread.sleep(200)
+        Thread.sleep(2000)
     }
 
     fun fight() {
@@ -33,7 +33,6 @@ class Arena(warrior1: Warrior, warrior2: Warrior, dice: Dice) {
             printArena()
             printMessage(warrior1.getMessage())
             printMessage(warrior2.getMessage())
-            println(warrior2.getCurrentHp())
 
             if (!warrior1.isAlive()) {
                 println(warrior1.getMessage())
@@ -47,7 +46,6 @@ class Arena(warrior1: Warrior, warrior2: Warrior, dice: Dice) {
             printArena()
             printMessage(warrior2.getMessage())
             printMessage(warrior1.getMessage())
-            println(warrior1.getCurrentHp())
         }
     }
 }
