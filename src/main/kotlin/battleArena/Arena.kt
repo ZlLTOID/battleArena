@@ -14,10 +14,19 @@ class Arena(warrior1: Warrior, warrior2: Warrior, dice: Dice) {
     fun printArena() {
         println("-------------- Arena --------------\n")
         println("Warrior\'s health: \n")
-        println("$warrior1 \u001B[32m ${warrior1.graphicHp()} \u001b[0m")
-        println("$warrior2 \u001B[32m ${warrior2.graphicHp()} \u001B[0m")
-    }
+        if (warrior1 is Warrior) {
+            println("$warrior1 \u001B[32m ${warrior1.graphicHp()} \u001b[0m")
+        } else if(warrior1 is Mage) {
+            println("$warrior1 \u001B[32m ${warrior1.graphicHp()} \u001b[0m")
+            println("$warrior1 \u001b[34m ${warrior1.graphicMana()} \u001b[0m")
+        }
 
+        if (warrior2 is Mage) {
+            println("$warrior2 \u001B[32m ${warrior2.graphicHp()} \u001B[0m | \u001B[34m ${warrior2.graphicMana()} \u001B[0m")
+        } else if (warrior2 is Warrior) {
+            println("$warrior2 \u001B[32m ${warrior2.graphicHp()} \u001B[0m")
+        }
+    }
     fun printMessage(message: String) {
         println(message)
         Thread.sleep(2000)
