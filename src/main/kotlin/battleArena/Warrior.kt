@@ -10,7 +10,7 @@ open class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) 
     protected var defend: Int
     protected var dice: Dice
     protected var battleMessage: String = ""
-    protected val alive: Boolean
+    private val alive: Boolean
         get() {
         return currentHp > 0
     }
