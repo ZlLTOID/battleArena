@@ -76,7 +76,8 @@ open class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) 
         }
     }
 
-    fun getMessage(): String
+    @JvmName("getBattleMessage1")
+    fun getBattleMessage(): String
     {
         return battleMessage
     }
