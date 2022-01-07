@@ -10,6 +10,10 @@ open class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) 
     protected var defend: Int
     protected var dice: Dice
     protected var battleMessage: String = ""
+    protected val alive: Boolean
+        get() {
+        return currentHp > 0
+    }
 
     init {
         this.name = name
@@ -20,7 +24,7 @@ open class Warrior(name: String, hp: Int, attack: Int, defend: Int, dice: Dice) 
     }
 
     fun isAlive(): Boolean {
-        if (currentHp == 0) {
+        if (alive) {
             battleMessage = "Warrior $name has died."
         }
 
